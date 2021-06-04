@@ -43,17 +43,17 @@ export default {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'dns-prefetch', href: 'https://fonts.gstatic.com' },
-      {
-        rel: 'stylesheet',
-        type: 'text/css',
-        href: 'https://fonts.googleapis.com/css?family=Nunito',
-      },
-      {
-        rel: 'stylesheet',
-        type: 'text/css',
-        href:
-          'https://cdn.materialdesignicons.com/4.9.95/css/materialdesignicons.min.css',
-      },
+      // {
+      //   rel: 'stylesheet',
+      //   type: 'text/css',
+      //   href: 'https://fonts.googleapis.com/css?family=Nunito',
+      // },
+      // {
+      //   rel: 'stylesheet',
+      //   type: 'text/css',
+      //   href:
+      //     'https://cdn.materialdesignicons.com/4.9.95/css/materialdesignicons.min.css',
+      // },
     ],
   },
   /*
@@ -63,7 +63,11 @@ export default {
   /*
    ** Global CSS
    */
-  css: ['./assets/scss/main.scss'],
+  css: [
+    './assets/css/global.css',
+    './assets/scss/main.scss',
+    '@mdi/font/css/materialdesignicons.min.css',
+  ],
   /*
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
