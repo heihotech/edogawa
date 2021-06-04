@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <nav-bar />
-    <aside-menu :menu="menu" />
+    <aside-menu :menu="menus" />
     <nuxt />
     <footer-bar />
   </div>
@@ -21,67 +21,16 @@ export default {
     NavBar,
   },
   computed: {
-    menu() {
-      return [
-        'General',
-        [
-          {
-            to: '/',
-            icon: 'desktop-mac',
-            label: 'Dashboard',
-          },
-        ],
-        'Examples',
-        [
-          {
-            to: '/tables',
-            label: 'Tables',
-            icon: 'table',
-            updateMark: true,
-          },
-          {
-            to: '/forms',
-            label: 'Forms',
-            icon: 'square-edit-outline',
-          },
-          {
-            to: '/profile',
-            label: 'Profile',
-            icon: 'account-circle',
-          },
-          {
-            label: 'Submenus',
-            subLabel: 'Submenus Example',
-            icon: 'view-list',
-            menu: [
-              {
-                href: '#void',
-                label: 'Sub-item One',
-              },
-              {
-                href: '#void',
-                label: 'Sub-item Two',
-              },
-            ],
-          },
-        ],
-        'About',
-        [
-          {
-            href: 'https://admin-one-nuxt.justboil.me',
-            label: 'Premium Demo',
-            icon: 'credit-card',
-          },
-          {
-            href: 'https://justboil.me/bulma-admin-template/one-nuxt',
-            label: 'About',
-            icon: 'help-circle',
-          },
-        ],
-      ]
+    user() {
+      return this.$store.state.auth.user
+    },
+    menus() {
+      this.$store.commit('menu/setMenu', this.user.level)
+      return this.$store.state.menu.menus
     },
   },
   created() {
+    this.$store.commit('auth/setAdmin')
     this.$store.commit('user', {
       name: 'John Doe',
       email: 'john@example.com',
