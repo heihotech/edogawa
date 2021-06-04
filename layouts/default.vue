@@ -38,6 +38,9 @@ export default {
     })
   },
   mounted() {
+    setTimeout(() => {
+      this.$store.commit('page/changePageLoading')
+    }, 2000)
     document.documentElement.classList.add('has-aside-left')
     document.documentElement.classList.add('has-aside-mobile-transition')
     document.documentElement.classList.add('has-navbar-fixed-top')

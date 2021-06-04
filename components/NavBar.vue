@@ -24,10 +24,11 @@
         <nav-bar-menu class="has-divider has-user-avatar">
           <user-avatar :avatar="user.avatar_url" :username="user.username" />
           <div class="is-user-name">
-            <span>{{ user.full_name }}</span>
+            <b-skeleton v-if="page_loading" width="10vw" animated></b-skeleton>
+            <span v-else>{{ user.full_name }}</span>
           </div>
 
-          <div slot="dropdown" class="navbar-dropdown">
+          <div v-if="!page_loading" slot="dropdown" class="navbar-dropdown">
             <nuxt-link
               to="/profile"
               class="navbar-item"
@@ -75,6 +76,9 @@ export default {
   computed: {
     user() {
       return this.$store.state.auth.user
+    },
+    page_loading() {
+      return this.$store.state.page.page_loading
     },
     menuNavBarToggleIcon() {
       return this.isMenuNavBarActive ? 'close' : 'dots-vertical'
