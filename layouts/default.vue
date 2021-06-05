@@ -30,7 +30,7 @@ export default {
     },
   },
   created() {
-    this.$store.commit('auth/setAdmin')
+    this.$store.commit('auth/setStudent')
     this.$store.commit('user', {
       name: 'John Doe',
       email: 'john@example.com',
