@@ -1,3 +1,3 @@
 <template>
-  <section>report</section>
+  <section class="section section-content">report</section>
 </template>

@@ -11,21 +11,18 @@
           </h1>
         </div>
       </div>
-      <div v-if="icon" class="level-item has-widget-icon">
+      <!-- <div v-if="icon" class="level-item has-widget-icon">
         <div class="is-widget-icon">
           <b-icon :icon="icon" size="is-large" :type="type" />
         </div>
-      </div>
+      </div> -->
     </div>
   </card-component>
 </template>
 
 <script>
-import CardComponent from '@/components/CardComponent'
-import GrowingNumber from '@/components/GrowingNumber'
 export default {
   name: 'CardWidget',
-  components: { GrowingNumber, CardComponent },
   props: {
     icon: {
       type: String,

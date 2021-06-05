@@ -1,3 +1,3 @@
 <template>
-  <section>transaction_history</section>
+  <section class="section section-content">transaction_history</section>
 </template>

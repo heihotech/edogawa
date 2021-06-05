@@ -2,24 +2,14 @@
   <div id="app">
     <nav-bar />
     <aside-menu :menu="menus" />
-    <nuxt />
+    <nuxt class="app-content" />
     <footer-bar />
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import NavBar from '@/components/NavBar'
-import AsideMenu from '@/components/AsideMenu'
-import FooterBar from '@/components/FooterBar'
-
 export default {
   name: 'Home',
-  components: {
-    FooterBar,
-    AsideMenu,
-    NavBar,
-  },
   computed: {
     user() {
       return this.$store.state.auth.user
@@ -30,7 +20,7 @@ export default {
     },
   },
   created() {
-    this.$store.commit('auth/setStudent')
+    this.$store.commit('auth/setAdmin')
     this.$store.commit('user', {
       name: 'John Doe',
       email: 'john@example.com',
@@ -48,3 +38,13 @@ export default {
   },
 }
 </script>
+<style>
+html,
+head,
+body {
+  font-family: 'Quicksand';
+}
+.app-content {
+  min-height: 90vh !important;
+}
+</style>

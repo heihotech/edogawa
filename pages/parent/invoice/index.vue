@@ -1,3 +1,3 @@
 <template>
-  <section>invoice</section>
+  <section class="section section-content">invoice</section>
 </template>

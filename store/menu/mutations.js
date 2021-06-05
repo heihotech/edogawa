@@ -7,7 +7,7 @@ export default {
           'Umum',
           [
             {
-              to: '/',
+              to: '/school-admin/dashboard',
               icon: 'desktop-mac',
               label: 'Beranda',
               updateMark: false,
@@ -16,19 +16,19 @@ export default {
           'Pengguna & Grup',
           [
             {
-              to: '/tables',
+              to: '/school-admin/teller',
               label: 'Bendahara',
               icon: 'table',
               updateMark: false,
             },
             {
-              to: '/forms',
+              to: '/school-admin/student',
               label: 'Siswa',
               icon: 'square-edit-outline',
               updateMark: false,
             },
             {
-              to: '/profile',
+              to: '/school-admin/group',
               label: 'Grup Siswa',
               icon: 'account-circle',
               updateMark: false,
@@ -37,13 +37,13 @@ export default {
           'Keuangan & Laporan',
           [
             {
-              to: '/tables',
+              to: '/school-admin/finance',
               label: 'Keuangan',
               icon: 'table',
               updateMark: false,
             },
             {
-              to: '/tables',
+              to: '/school-admin/report',
               label: 'Laporan',
               icon: 'table',
               updateMark: false,
@@ -52,19 +52,19 @@ export default {
           'Pengaturan',
           [
             {
-              to: '/tables',
+              to: '/school-admin/setting/school-profile',
               label: 'Profil Sekolah',
               icon: 'table',
               updateMark: false,
             },
             {
-              to: '/tables',
+              to: '/school-admin/setting/invoice',
               label: 'Faktur',
               icon: 'table',
               updateMark: false,
             },
             {
-              to: '/tables',
+              to: '/school-admin/setting/user-account',
               label: 'Akun',
               icon: 'table',
               updateMark: false,
@@ -78,7 +78,7 @@ export default {
           'Umum',
           [
             {
-              to: '/',
+              to: '/school-teller/dashboard',
               icon: 'desktop-mac',
               label: 'Beranda',
               updateMark: false,
@@ -87,13 +87,13 @@ export default {
           'Transaksi & Laporan',
           [
             {
-              to: '/tables',
+              to: '/school-teller/transaction',
               label: 'Transaksi',
               icon: 'table',
               updateMark: false,
             },
             {
-              to: '/tables',
+              to: '/school-teller/report',
               label: 'Laporan',
               icon: 'table',
               updateMark: false,
@@ -102,13 +102,13 @@ export default {
           'Pengaturan',
           [
             {
-              to: '/tables',
+              to: '/school-teller/user-profile',
               label: 'Profil',
               icon: 'table',
               updateMark: false,
             },
             {
-              to: '/tables',
+              to: '/school-teller/user-account',
               label: 'Akun',
               icon: 'table',
               updateMark: false,
@@ -122,7 +122,7 @@ export default {
           'Umum',
           [
             {
-              to: '/',
+              to: '/student/dashboard',
               icon: 'desktop-mac',
               label: 'Beranda',
               updateMark: false,
@@ -131,13 +131,13 @@ export default {
           'Pembayaran',
           [
             {
-              to: '/tables',
+              to: '/student/invoice',
               label: 'Tagihan',
               icon: 'table',
               updateMark: false,
             },
             {
-              to: '/tables',
+              to: '/student/transaction-history',
               label: 'Riwayat Pembayaran',
               icon: 'table',
               updateMark: false,
@@ -151,7 +151,7 @@ export default {
           'Umum',
           [
             {
-              to: '/',
+              to: '/parent/dashboard',
               icon: 'desktop-mac',
               label: 'Beranda',
               updateMark: false,
@@ -160,13 +160,13 @@ export default {
           'Pembayaran',
           [
             {
-              to: '/tables',
+              to: '/parent/invoice',
               label: 'Tagihan',
               icon: 'table',
               updateMark: false,
             },
             {
-              to: '/tables',
+              to: '/parent/transaction-history',
               label: 'Riwayat Pembayaran',
               icon: 'table',
               updateMark: false,

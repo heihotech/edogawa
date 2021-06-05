@@ -1,3 +1,3 @@
 <template>
-  <section>school_profile</section>
+  <section class="section section-content">school_profile</section>
 </template>

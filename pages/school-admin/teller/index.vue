@@ -1,3 +1,3 @@
 <template>
-  <section>teller</section>
+  <section class="section section-content">teller</section>
 </template>

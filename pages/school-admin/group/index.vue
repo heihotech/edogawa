@@ -1,3 +1,3 @@
 <template>
-  <section>group</section>
+  <section class="section section-content">group</section>
 </template>

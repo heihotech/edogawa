@@ -7,6 +7,12 @@
       >
         <b-icon :icon="menuToggleMobileIcon" />
       </a>
+      <div class="navbar-item has-control no-left-space-touch">
+        <div class="control">
+          <b-skeleton v-if="page_loading" width="10vw" animated></b-skeleton>
+          <h5 v-else class="title is-5">{{ page_title }}</h5>
+        </div>
+      </div>
     </div>
     <div class="navbar-brand is-right">
       <a
@@ -79,6 +85,9 @@ export default {
     },
     page_loading() {
       return this.$store.state.page.page_loading
+    },
+    page_title() {
+      return this.$store.state.page.page_title
     },
     menuNavBarToggleIcon() {
       return this.isMenuNavBarActive ? 'close' : 'dots-vertical'
