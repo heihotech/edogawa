@@ -9,8 +9,9 @@
       </a>
       <div class="navbar-item has-control no-left-space-touch">
         <div class="control">
-          <b-skeleton v-if="page_loading" width="10vw" animated></b-skeleton>
-          <h5 v-else class="title is-5">{{ page_title }}</h5>
+          <!-- <b-skeleton v-if="pageLoading" width="10vw" animated></b-skeleton>
+          <h5 v-else class="title is-5">{{ pageTitle }}</h5> -->
+          <h5 class="title is-5">{{ pageTitle }}</h5>
         </div>
       </div>
     </div>
@@ -30,11 +31,13 @@
         <nav-bar-menu class="has-divider has-user-avatar">
           <user-avatar :avatar="user.avatar_url" :username="user.username" />
           <div class="is-user-name">
-            <b-skeleton v-if="page_loading" width="10vw" animated></b-skeleton>
-            <span v-else>{{ user.full_name }}</span>
+            <!-- <b-skeleton v-if="pageLoading" width="10vw" animated></b-skeleton> -->
+            <!-- <span v-else>{{ user.full_name }}</span> -->
+            <span>{{ user.full_name }}</span>
           </div>
 
-          <div v-if="!page_loading" slot="dropdown" class="navbar-dropdown">
+          <!-- <div v-if="!pageLoading" slot="dropdown" class="navbar-dropdown"> -->
+          <div slot="dropdown" class="navbar-dropdown">
             <nuxt-link
               to="/profile"
               class="navbar-item"
@@ -83,11 +86,11 @@ export default {
     user() {
       return this.$store.state.auth.user
     },
-    page_loading() {
-      return this.$store.state.page.page_loading
+    pageLoading() {
+      return this.$store.state.page.pageLoading
     },
-    page_title() {
-      return this.$store.state.page.page_title
+    pageTitle() {
+      return this.$store.state.page.pageTitle
     },
     menuNavBarToggleIcon() {
       return this.isMenuNavBarActive ? 'close' : 'dots-vertical'

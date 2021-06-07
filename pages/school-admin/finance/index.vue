@@ -59,6 +59,11 @@
 </template>
 <script>
 export default {
+  computed: {
+    pageLoading() {
+      return this.$store.state.menu.pageLoading
+    },
+  },
   created() {
     this.$store.commit('page/changePageTitle', 'Keuangan')
   },

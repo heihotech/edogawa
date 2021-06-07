@@ -11,11 +11,6 @@
           </h1>
         </div>
       </div>
-      <!-- <div v-if="icon" class="level-item has-widget-icon">
-        <div class="is-widget-icon">
-          <b-icon :icon="icon" size="is-large" :type="type" />
-        </div>
-      </div> -->
     </div>
   </card-component>
 </template>
@@ -23,6 +18,11 @@
 <script>
 export default {
   name: 'CardWidget',
+  computed: {
+    pageLoading() {
+      return this.$store.state.menu.pageLoading
+    },
+  },
   props: {
     icon: {
       type: String,

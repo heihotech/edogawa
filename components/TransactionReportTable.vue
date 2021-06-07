@@ -8,23 +8,29 @@
       :hoverable="true"
       default-sort="id"
       default-sort-direction="desc"
-      :data="histories"
+      :data="reports"
     >
       <template slot-scope="props">
-        <b-table-column label="Nominal" field="nominal_text">
-          {{ props.row.nominal_text }}
+        <b-table-column label="Nama Tagihan" field="itemName">
+          {{ props.row.itemName }}
         </b-table-column>
-        <b-table-column label="Nominal Diterima" field="nominal_received_text">
-          {{ props.row.nominal_received_text }}
+        <b-table-column label="Nama Siswa" field="fullName">
+          {{ props.row.student.fullName }}
         </b-table-column>
-        <b-table-column label="Status" field="status_text">
-          <span :class="`tag ${props.row.status_color}`">
-            {{ props.row.status_text }}
+        <b-table-column label="Nominal/Total">
+          {{ props.row.itemPaidText }}/{{ props.row.itemPriceText }}
+        </b-table-column>
+        <b-table-column label="Channel Pembayaran" field="paymentChannel">
+          {{ props.row.invoice.paymentChannel }}
+        </b-table-column>
+        <b-table-column label="Status" field="statusText">
+          <span :class="`tag ${props.row.statusColor}`">
+            {{ props.row.statusText }}
           </span>
         </b-table-column>
         <b-table-column label="Tanggal">
           <small class="has-text-grey is-abbr-like">{{
-            props.row.created_formated_text
+            props.row.invoice.createdFormatedText
           }}</small>
         </b-table-column>
         <b-table-column custom-key="actions" class="is-actions-cell">
@@ -63,7 +69,7 @@
 import axios from 'axios'
 
 export default {
-  name: 'PayoutHistoryTable',
+  name: 'TransactionReportTable',
   props: {
     dataUrl: {
       type: String,
@@ -72,7 +78,7 @@ export default {
   },
   data() {
     return {
-      histories: [],
+      reports: [],
       isLoading: false,
       paginated: false,
       perPage: 10,
@@ -91,7 +97,7 @@ export default {
               if (r.data.data.length > this.perPage) {
                 this.paginated = true
               }
-              this.histories = r.data.data
+              this.reports = r.data.data
             }
           })
           .catch((e) => {

@@ -36,8 +36,8 @@ export default {
     isAsideVisible() {
       return this.$store.state.isAsideVisible
     },
-    page_loading() {
-      return this.$store.state.page.page_loading
+    pageLoading() {
+      return this.$store.state.page.pageLoading
     },
   },
   methods: {

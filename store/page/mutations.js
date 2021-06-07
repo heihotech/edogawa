@@ -1,8 +1,8 @@
 export default {
   changePageLoading(state) {
-    state.page_loading = !state.page_loading
+    state.pageLoading = !state.pageLoading
   },
   changePageTitle(state, payload) {
-    state.page_title = payload
+    state.pageTitle = payload
   },
 }

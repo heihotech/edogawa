@@ -1,13 +1,14 @@
 <template>
   <div class="is-user-avatar">
-    <b-skeleton
-      v-if="page_loading"
+    <!-- <b-skeleton
+      v-if="pageLoading"
       width="100%"
       height="100%"
       circle
       animated
-    ></b-skeleton>
-    <img v-else :src="avatar" :alt="username" />
+    ></b-skeleton> -->
+    <!-- <img v-else :src="avatar" :alt="username" /> -->
+    <img :src="avatar" :alt="username" />
   </div>
 </template>
 
@@ -25,8 +26,8 @@ export default {
     },
   },
   computed: {
-    page_loading() {
-      return this.$store.state.page.page_loading
+    pageLoading() {
+      return this.$store.state.page.pageLoading
     },
   },
 }

@@ -1,0 +1,72 @@
+{
+  "data": [
+    {
+      "id": 23,
+      "itemPrice": 145000,
+      "itemPriceText": "Rp. 145.000,-",
+      "itemPaid": 145000,
+      "itemPaidText": "Rp. 145.000,-",
+      "itemName": "SPP Juni 2021 Kelas XI",
+      "status": 1,
+      "statusText": "Lunas",
+      "statusColor": "is-success",
+      "student": {
+        "id": 20,
+        "fullName": "Andi Setiawan",
+        "identityNumber": 3300213,
+        "group": {
+          "id": 2,
+          "name": "XI IPA 1",
+          "year": {
+            "id": 1,
+            "name": "2020/2021"
+          }
+        }
+      },
+      "invoice": {
+        "id": 22,
+        "amount": 300000,
+        "amountText": "Rp. 300.000,-",
+        "paymentChannel": "Indomaret",
+        "status": 1,
+        "statusText": "Berhasil",
+        "created": "Mar 7, 2020 18:00:22",
+        "createdFormatedText": "07-03-2020 18:00"
+      }
+    },
+    {
+      "id": 22,
+      "itemPrice": 2000000,
+      "itemPriceText": "Rp. 2.000.000,-",
+      "itemPaid": 135000,
+      "itemPaidText": "Rp. 135.000,-",
+      "itemName": "Uang Gedung 2021 Kelas XI",
+      "status": 2,
+      "statusText": "Sebagian",
+      "statusColor": "is-link",
+      "student": {
+        "id": 20,
+        "fullName": "Andi Setiawan",
+        "identityNumber": 3300213,
+        "group": {
+          "id": 2,
+          "name": "XI IPA 1",
+          "year": {
+            "id": 1,
+            "name": "2020/2021"
+          }
+        }
+      },
+      "invoice": {
+        "id": 22,
+        "amount": 300000,
+        "amountText": "Rp. 300.000,-",
+        "paymentChannel": "Indomaret",
+        "status": 1,
+        "statusText": "Berhasil",
+        "created": "Mar 7, 2020 18:00:22",
+        "createdFormatedText": "07-03-2020 18:00"
+      }
+    }
+  ]
+}
