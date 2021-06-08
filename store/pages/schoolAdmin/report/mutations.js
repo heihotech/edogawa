@@ -5,4 +5,10 @@ export default {
   changeTransactionType(state, payload) {
     state.transactionType = payload
   },
+  changeDateStart(state, payload) {
+    state.dateStart = payload
+  },
+  changeDateEnd(state, payload) {
+    state.dateEnd = payload
+  },
 }

@@ -1,110 +1,104 @@
 <template>
-  <section class="section section-content">
-    <!-- <b-loading
-      :active.sync="isLoading"
-      :is-full-page="true"
-      :can-cancel="false"
-    ></b-loading> -->
-    <!-- filter card -->
-    <card-component>
-      <div class="columns">
-        <b-loading
-          :active.sync="isLoading"
-          :is-full-page="false"
-          :can-cancel="false"
-        ></b-loading>
-        <!-- column -->
-        <div class="column">
-          <b-field label="Jenis Transaksi">
-            <b-select
-              v-model="transactionType"
-              placeholder="Pilih jenis transaksi"
-              expanded
-              @input="changeFilter"
-            >
-              <option
-                v-for="option in options"
-                :key="option.id"
-                :value="option.id"
+  <client-only>
+    <section class="section section-content">
+      <card-component>
+        <div class="columns">
+          <b-loading
+            :active.sync="isLoading"
+            :is-full-page="false"
+            :can-cancel="false"
+          ></b-loading>
+          <!-- column -->
+          <div class="column">
+            <b-field label="Jenis Transaksi">
+              <b-select
+                v-model="transactionType"
+                placeholder="Pilih jenis transaksi"
+                expanded
+                @input="changeFilter"
               >
-                {{ option.text }}
-              </option>
-            </b-select>
-          </b-field>
+                <option
+                  v-for="option in options"
+                  :key="option.id"
+                  :value="option.id"
+                >
+                  {{ option.text }}
+                </option>
+              </b-select>
+            </b-field>
+          </div>
+          <!-- column -->
+          <div class="column">
+            <b-field label="Tanggal Awal">
+              <b-datepicker
+                v-model="dateStart"
+                placeholder="Tanggal awal"
+                icon="calendar-today"
+                locale="id-ID"
+                :max-date="today"
+                editable
+                @input="changeFilter"
+              >
+              </b-datepicker>
+            </b-field>
+          </div>
+          <!-- column -->
+          <div class="column">
+            <b-field label="Tanggal Akhir">
+              <b-datepicker
+                v-model="dateEnd"
+                placeholder="Tanggal akhir"
+                icon="calendar-today"
+                locale="id-ID"
+                :min-date="dateStart"
+                :max-date="today"
+                editable
+                @input="changeFilter"
+              >
+              </b-datepicker>
+            </b-field>
+          </div>
         </div>
-        <!-- column -->
-        <div class="column">
-          <b-field label="Tanggal Awal">
-            <b-datepicker
-              :v-model.sync="dateStart"
-              placeholder="Tanggal awal"
-              icon="calendar-today"
-              locale="id-ID"
-              :max-date="today"
-              editable
-              @input="changeFilter"
-            >
-            </b-datepicker>
-          </b-field>
-        </div>
-        <!-- column -->
-        <div class="column">
-          <b-field label="Tanggal Akhir">
-            <b-datepicker
-              :v-model.sync="dateEnd"
-              placeholder="Tanggal akhir"
-              icon="calendar-today"
-              locale="id-ID"
-              :min-date.sync="dateStart"
-              :max-date="today"
-              editable
-              @input="changeFilter"
-            >
-            </b-datepicker>
-          </b-field>
-        </div>
-      </div>
-    </card-component>
-    <!-- end filter card -->
+      </card-component>
+      <!-- end filter card -->
 
-    <!-- select scope -->
-    <div class="level">
-      <div class="level-left"></div>
-      <div class="level-right">
-        <div class="level-item">
-          <div class="buttons is-right">
-            <b-button
-              class="button is-primary"
-              to="/"
-              icon-left="download"
-              :disabled.sync="isLoading"
-              >Unduh Laporan</b-button
-            >
+      <!-- select scope -->
+      <div class="level">
+        <div class="level-left"></div>
+        <div class="level-right">
+          <div class="level-item">
+            <div class="buttons is-right">
+              <b-button
+                class="button is-primary"
+                to="/"
+                icon-left="download"
+                :disabled.sync="isLoading"
+                >Unduh Laporan</b-button
+              >
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <!-- end select scope -->
+      <!-- end select scope -->
 
-    <!-- payout history -->
-    <card-component
-      class="has-table has-mobile-sort-spaced"
-      title="Riwayat Transaksi"
-      icon="credit-card"
-    >
-      <transaction-report-table
-        :data.sync="reports"
-        :paginated.sync="paginated"
-        :per-page.sync="perPage"
-      />
-    </card-component>
-    <!-- end payout history -->
-  </section>
+      <!-- payout history -->
+      <card-component
+        class="has-table has-mobile-sort-spaced"
+        title="Riwayat Transaksi"
+        icon="credit-card"
+      >
+        <transaction-report-table
+          :data.sync="reports"
+          :paginated.sync="paginated"
+          :per-page.sync="perPage"
+        />
+      </card-component>
+      <!-- end payout history -->
+    </section>
+  </client-only>
 </template>
 <script>
 import axios from 'axios'
-// import moment from 'moment'
-// import { mapState } from 'vuex'
 export default {
   data() {
     return {
@@ -120,14 +114,29 @@ export default {
     }
   },
   computed: {
-    isLoading() {
-      return this.$store.state.pages.schoolAdmin.report.isLoading
+    isLoading: {
+      get() {
+        return this.$store.state.pages.schoolAdmin.report.isLoading
+      },
+      set(value) {
+        this.$store.commit('pages/schoolAdmin/report/changeIsLoading', value)
+      },
     },
-    dateStart() {
-      return this.$store.state.pages.schoolAdmin.report.dateStart
+    dateStart: {
+      get() {
+        return this.$store.state.pages.schoolAdmin.report.dateStart
+      },
+      set(value) {
+        this.$store.commit('pages/schoolAdmin/report/changeDateStart', value)
+      },
     },
-    dateEnd() {
-      return this.$store.state.pages.schoolAdmin.report.dateEnd
+    dateEnd: {
+      get() {
+        return this.$store.state.pages.schoolAdmin.report.dateEnd
+      },
+      set(value) {
+        this.$store.commit('pages/schoolAdmin/report/changeDateEnd', value)
+      },
     },
     transactionType: {
       get() {
@@ -141,7 +150,6 @@ export default {
       },
     },
   },
-  created() {},
   mounted() {
     this.today = new Date()
     this.getReportData()

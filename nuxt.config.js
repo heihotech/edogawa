@@ -118,6 +118,7 @@ export default {
       // Remove moment.js from chart.js
       // https://www.chartjs.org/docs/latest/getting-started/integration.html#bundlers-webpack-rollup-etc
       config.externals.moment = 'moment'
+      config.resolve.symlinks = false
     },
   },
   render: {
