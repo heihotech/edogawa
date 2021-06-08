@@ -1,13 +1,18 @@
 <template>
   <section class="section section-content">
-    <b-loading
+    <!-- <b-loading
       :active.sync="isLoading"
       :is-full-page="true"
       :can-cancel="false"
-    ></b-loading>
+    ></b-loading> -->
     <!-- filter card -->
     <card-component>
       <div class="columns">
+        <b-loading
+          :active.sync="isLoading"
+          :is-full-page="false"
+          :can-cancel="false"
+        ></b-loading>
         <!-- column -->
         <div class="column">
           <b-field label="Jenis Transaksi">
@@ -31,7 +36,7 @@
         <div class="column">
           <b-field label="Tanggal Awal">
             <b-datepicker
-              v-model="dateStart"
+              :v-model.sync="dateStart"
               placeholder="Tanggal awal"
               icon="calendar-today"
               locale="id-ID"
@@ -46,11 +51,11 @@
         <div class="column">
           <b-field label="Tanggal Akhir">
             <b-datepicker
-              v-model="dateEnd"
+              :v-model.sync="dateEnd"
               placeholder="Tanggal akhir"
               icon="calendar-today"
               locale="id-ID"
-              :min-date="dateStart"
+              :min-date.sync="dateStart"
               :max-date="today"
               editable
               @input="changeFilter"
@@ -68,14 +73,13 @@
       <div class="level-right">
         <div class="level-item">
           <div class="buttons is-right">
-            <a
-              href="https://admin-one-nuxt.justboil.me/"
-              target="_blank"
+            <b-button
               class="button is-primary"
+              to="/"
+              icon-left="download"
+              :disabled.sync="isLoading"
+              >Unduh Laporan</b-button
             >
-              <b-icon icon="download" custom-size="default" />
-              <span>Unduh Laporan</span>
-            </a>
           </div>
         </div>
       </div>
@@ -89,13 +93,18 @@
       icon="credit-card"
     >
       <transaction-report-table
-        :data-url="`${$router.options.base}data-sources/school-admin/report.json`"
+        :data.sync="reports"
+        :paginated.sync="paginated"
+        :per-page.sync="perPage"
       />
     </card-component>
     <!-- end payout history -->
   </section>
 </template>
 <script>
+import axios from 'axios'
+// import moment from 'moment'
+// import { mapState } from 'vuex'
 export default {
   data() {
     return {
@@ -104,27 +113,68 @@ export default {
         { id: 2, text: 'Online' },
         { id: 3, text: 'Offline' },
       ],
-      dateStart: null,
-      dateEnd: null,
-      transactionType: 1,
-      today: undefined,
-      isLoading: false,
+      today: new Date(),
+      reports: [],
+      paginated: false,
+      perPage: 0,
     }
   },
+  computed: {
+    isLoading() {
+      return this.$store.state.pages.schoolAdmin.report.isLoading
+    },
+    dateStart() {
+      return this.$store.state.pages.schoolAdmin.report.dateStart
+    },
+    dateEnd() {
+      return this.$store.state.pages.schoolAdmin.report.dateEnd
+    },
+    transactionType: {
+      get() {
+        return this.$store.state.pages.schoolAdmin.report.transactionType
+      },
+      set(value) {
+        this.$store.commit(
+          'pages/schoolAdmin/report/changeTransactionType',
+          value
+        )
+      },
+    },
+  },
+  created() {},
   mounted() {
     this.today = new Date()
+    this.getReportData()
   },
   methods: {
+    getReportData() {
+      this.$store.commit('pages/schoolAdmin/report/changeIsLoading')
+      axios
+        .get('http://localhost:3000/data-sources/school-admin/report.json', {
+          transactionType: this.transactionType,
+          dateStart: this.dateStart,
+          dateEnd: this.dateEnd,
+          userId: 1,
+        })
+        .then((r) => {
+          if (r.data) {
+            if (r.data.length > this.perPage) {
+              this.paginated = true
+            }
+            this.reports = r.data.data
+          }
+          this.$store.commit('pages/schoolAdmin/report/changeIsLoading')
+        })
+        .catch((e) => {
+          this.$store.commit('pages/schoolAdmin/report/changeIsLoading')
+          this.$buefy.toast.open({
+            message: `Error: ${e.message}`,
+            type: 'is-danger',
+          })
+        })
+    },
     changeFilter() {
-      console.log(this.transactionType)
-      console.log(this.dateStart)
-      console.log(this.dateEnd)
-      console.log(this.isLoading)
-      this.isLoading = true
-      console.log(this.isLoading)
-      setTimeout(() => {
-        this.isLoading = false
-      }, 2000)
+      this.getReportData()
     },
   },
 }

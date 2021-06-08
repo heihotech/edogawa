@@ -18,11 +18,6 @@
 <script>
 export default {
   name: 'CardWidget',
-  computed: {
-    pageLoading() {
-      return this.$store.state.menu.pageLoading
-    },
-  },
   props: {
     icon: {
       type: String,
@@ -47,6 +42,11 @@ export default {
     type: {
       type: String,
       default: null,
+    },
+  },
+  computed: {
+    pageLoading() {
+      return this.$store.state.menu.pageLoading
     },
   },
 }
